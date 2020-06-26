@@ -1,0 +1,22 @@
+Example test file for Coding Challenge Engine.
+The TestRUnner only reads two sections:
+Between test_start and test_end.
+Betwenn solution_start and solution_end.
+Note thet the section names are case sensitive.
+
+The following example tests a solution that multiplies every integer with 2.
+
+TEST_START
+4
+7
+2
+-42
+5
+TEST_END
+
+SOLUTION_START
+14
+4
+-84
+10
+SOLUTION_END
