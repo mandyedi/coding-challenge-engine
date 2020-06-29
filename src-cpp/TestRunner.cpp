@@ -1,6 +1,5 @@
 #include <iostream>
 #include <streambuf>
-#include <filesystem>
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -11,11 +10,35 @@ TestRunner::TestRunner()
 	: CinBackup( nullptr )
 	, CoutBackup( nullptr )
 {
-	Init();
 }
 
 TestRunner::~TestRunner()
 {
+}
+
+void TestRunner::InitWithAll()
+{
+	TestFileDirectoryEntries.clear();
+	for ( auto it : std::filesystem::directory_iterator( "tests" ) )
+	{
+		TestFileDirectoryEntries.push_back( it );
+	}
+
+	ReadTestFiles();
+}
+
+void TestRunner::InitWithFileNames( const std::set<std::string> &fileNames )
+{
+	TestFileDirectoryEntries.clear();
+	for ( auto it : std::filesystem::directory_iterator( "tests" ) )
+	{
+		if ( fileNames.find( it.path().filename().string() ) != fileNames.end() )
+		{
+			TestFileDirectoryEntries.push_back( it );
+		}
+	}
+
+	ReadTestFiles();
 }
 
 void TestRunner::RunTests()
@@ -75,16 +98,6 @@ void TestRunner::EvaluateSolution()
 	}
 }
 
-void TestRunner::Reset()
-{
-
-}
-
-void TestRunner::Init()
-{
-	ReadTestFiles();
-}
-
 void TestRunner::ReadTestFiles()
 {
 	Tests.clear();
@@ -96,15 +109,15 @@ void TestRunner::ReadTestFiles()
 		SolutionData
 	};
 
-	for ( auto &it : std::filesystem::directory_iterator( "tests" ) )
+	for ( auto &entry : TestFileDirectoryEntries )
 	{
-		std::string line;
-		std::ifstream fileStream( it.path() );
+		std::ifstream fileStream( entry.path() );
 		if ( fileStream )
 		{
 			Test test;
-			test.Name = it.path().filename().string();
+			test.Name = entry.path().filename().string();
 			TestFileStatus fileStatus = TestFileStatus::Comment;
+			std::string line;
 			while ( std::getline( fileStream, line ) )
 			{
 				if ( line.compare( "TEST_START" ) == 0 )
@@ -142,9 +155,9 @@ void TestRunner::ReadTestFiles()
 				}
 			}
 			Tests.push_back( test );
-		}
 
-		fileStream.close();
+			fileStream.close();
+		}
 	}
 }
 

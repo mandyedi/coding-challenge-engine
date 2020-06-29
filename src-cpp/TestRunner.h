@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <set>
+#include <filesystem>
 
 class TestRunner
 {
@@ -8,16 +10,21 @@ public:
 	TestRunner();
 	virtual ~TestRunner();
 
+	void InitWithAll();
+	void InitWithFileNames( const std::set<std::string> &fileNames );
+
 	void RunTests();
 	void EvaluateSolution();
-	void Reset();
 
 private:
-	void Init();
 	void ReadTestFiles();
 
 	std::streambuf *CinBackup;
 	std::streambuf *CoutBackup;
+
+	std::set<std::string> TestFileNames;
+
+	std::vector<std::filesystem::directory_entry> TestFileDirectoryEntries;
 
 	struct Test
 	{

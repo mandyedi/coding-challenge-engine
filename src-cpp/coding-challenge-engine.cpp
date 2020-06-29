@@ -7,9 +7,10 @@
 int main(int argc, char **argv)
 {
     TestRunner Runner;
+    Runner.InitWithAll();
+    //Runner.InitWithFileNames( { "test0.txt", "test1.txt" } );
     Runner.RunTests();
     Runner.EvaluateSolution();
-    Runner.Reset();
 
     return 0;
 }
