@@ -13,6 +13,7 @@ Currently it supports only C++, but Python is coming soon. Feel free to request 
 - [ ] Time limit for solution
 - [x] Select test/tests to run
 - [ ] Rerun test case/cases for a given number of times
+- [ ] DebugPrint that not affects the solution output
 
 ### Engine usage
  1. Add test files to tests folder (e.g. src-cpp/tests).
