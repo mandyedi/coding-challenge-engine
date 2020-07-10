@@ -13,7 +13,9 @@ Currently it supports only C++, but Python is coming soon. Feel free to request 
 - [ ] Time limit for solution
 - [x] Select test/tests to run
 - [ ] Rerun test case/cases for a given number of times
-- [ ] DebugPrint that not affects the solution output
+- [ ] DebugPrint that does not affect the solution output
+- [ ] Unit test the solution code (Google Test?)
+- [ ] Automate solution code generation (do not have to edit solution class by hand, a scipt generates the final version that can be submitted)
 
 ### Engine usage
  1. Add test files to tests folder (e.g. src-cpp/tests).
