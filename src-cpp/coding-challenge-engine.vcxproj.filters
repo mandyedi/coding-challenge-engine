@@ -33,4 +33,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="tests\test0.txt" />
+    <Text Include="tests\test1.txt" />
+  </ItemGroup>
 </Project>

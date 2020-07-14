@@ -48,8 +48,6 @@ void TestRunner::RunTests()
 
 	Solution solution;
 
-	// new
-
 	for ( auto &test : Tests )
 	{
 		// Send test inputs to cin

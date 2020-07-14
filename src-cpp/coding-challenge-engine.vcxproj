@@ -149,6 +149,10 @@
     <ClInclude Include="Solution.h" />
     <ClInclude Include="TestRunner.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="tests\test0.txt" />
+    <Text Include="tests\test1.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
