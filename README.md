@@ -15,7 +15,7 @@ Currently it supports only C++, but Python is coming soon. Feel free to request 
 - [ ] Rerun test case/cases for a given number of times
 - [ ] DebugPrint that does not affect the solution output
 - [ ] Unit test the solution code (Google Test?)
-- [ ] Automate solution code generation (do not have to edit solution class by hand, a scipt generates the final version that can be submitted)
+- [ ] [#1](https://github.com/mandyedi/coding-challenge-engine/issues/1 "Solution cocde generation") Automate solution code generation (do not have to edit solution class by hand, a script generates the final version that can be submitted)
 
 ### Engine usage
  1. Add test files to tests folder (e.g. src-cpp/tests).
