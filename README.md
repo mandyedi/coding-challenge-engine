@@ -10,12 +10,12 @@ Currently it supports only C++, but Python is coming soon. Feel free to request 
 ### Features
 - [x] Check solution code against test cases
 - [x] Report results
-- [ ] Time limit for solution
+- [ ] [#2](https://github.com/mandyedi/coding-challenge-engine/issues/2 "Time measurement #2") Time measurement
 - [x] Select test/tests to run
 - [ ] Rerun test case/cases for a given number of times
 - [ ] DebugPrint that does not affect the solution output
 - [ ] Unit test the solution code (Google Test?)
-- [ ] [#1](https://github.com/mandyedi/coding-challenge-engine/issues/1 "Solution cocde generation") Automate solution code generation (do not have to edit solution class by hand, a script generates the final version that can be submitted)
+- [ ] [#1](https://github.com/mandyedi/coding-challenge-engine/issues/1 "Solution cocde generation #1") Automate solution code generation (do not have to edit solution class by hand, a script generates the final version that can be submitted)
 
 ### Engine usage
  1. Add test files to tests folder (e.g. src-cpp/tests).
