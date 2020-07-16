@@ -8,7 +8,14 @@ int main(int argc, char **argv)
 {
     TestRunner Runner;
     Runner.InitWithAll();
-    //Runner.InitWithFileNames( { "test0.txt", "test1.txt" } );
+    Runner.InitWithFileNames( {
+          "test0.txt"
+        , "test1.txt"
+        , "test2.txt"
+        , "test3.txt"
+        , "test4.txt"
+        , "test5.txt"
+    } );
     Runner.RunTests();
     Runner.EvaluateSolution();
 
