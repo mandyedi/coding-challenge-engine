@@ -10,7 +10,7 @@ Currently it supports only C++, but Python is coming soon. Feel free to request 
 ### Features
 - [x] Check solution code against test cases
 - [x] Report results
-- [ ] [#2](https://github.com/mandyedi/coding-challenge-engine/issues/2 "Time measurement #2") Time measurement
+- [x] [#2](https://github.com/mandyedi/coding-challenge-engine/issues/2 "Time measurement #2") Time measurement
 - [x] Select test/tests to run
 - [ ] Rerun test case/cases for a given number of times
 - [ ] DebugPrint that does not affect the solution output
@@ -44,7 +44,7 @@ The test runner only reads two sections:
 
 ### Data input and output
 The engine is communicating via stdin and stdout.
-In Solution::SolutionSourceCode() stdin an stdout are redirected so its behavior is equivalent to most of the challenge websites.
+In Solution::SolutionSourceCode() stdin and stdout are redirected so its behavior is equivalent to most of the challenge websites.
 
 ### Test file structure:  
 ```
@@ -71,4 +71,21 @@ SOLUTION_START
 0
 18
 SOLUTION_END
+```
+
+### Time Measurement
+You can measure the running time of the solution. Two default time point is added: start, end.
+In Solution.cpp you can add a new time point as below:
+```cpp
+// Context is a pointer to TestRunner instance
+// Input parameter is the time point's name
+Context->AddTimePoint( "User Defined" );
+```
+After every test evaluation there is a time table with the time point names and the absolute and relative time points.
+```
+                         Absolute Time    Relative Time
+Start                          0.000 s          0.000 s
+UserDefined1                   0.014 s          0.014 s
+UserDefined2                   0.021 s          0.007 s
+End                            0.110 s          0.089 s
 ```
