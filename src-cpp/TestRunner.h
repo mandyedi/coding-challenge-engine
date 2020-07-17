@@ -3,6 +3,8 @@
 #include <vector>
 #include <set>
 #include <filesystem>
+#include <chrono>
+#include <utility>
 
 class TestRunner
 {
@@ -16,8 +18,12 @@ public:
 	void RunTests();
 	void EvaluateSolution();
 
+	void AddTimePoint( const std::string &name );
+
 private:
 	void ReadTestFiles();
+
+	unsigned int ActiveTestIndex;
 
 	std::streambuf *CinBackup;
 	std::streambuf *CoutBackup;
@@ -32,6 +38,7 @@ private:
 		std::vector<std::string> TestInput;
 		std::vector<std::string> TestSolution;
 		std::vector<std::string> Solution;
+		std::vector< std::pair<std::string, std::chrono::steady_clock::time_point> > TimePoints;
 
 		bool CheckSolution();
 		void PrintTestSolution();
@@ -41,3 +48,7 @@ private:
 	std::vector<Test> Tests;
 };
 
+inline void TestRunner::AddTimePoint( const std::string &name )
+{
+	Tests[ActiveTestIndex].TimePoints.push_back( { name, std::chrono::steady_clock::now() } );
+}

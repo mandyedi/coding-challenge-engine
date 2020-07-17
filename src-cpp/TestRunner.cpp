@@ -3,11 +3,13 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <chrono>
 #include "TestRunner.h"
 #include "Solution.h"
 
 TestRunner::TestRunner()
-	: CinBackup( nullptr )
+	: ActiveTestIndex( 0 )
+	, CinBackup( nullptr )
 	, CoutBackup( nullptr )
 {
 }
@@ -43,14 +45,16 @@ void TestRunner::InitWithFileNames( const std::set<std::string> &fileNames )
 
 void TestRunner::RunTests()
 {
+	Solution solution( this );
+
 	CinBackup = std::cin.rdbuf();
 	CoutBackup = std::cout.rdbuf();
 
-	Solution solution;
-
-	for ( auto &test : Tests )
+	for ( unsigned int i = 0; i < Tests.size(); i++ )
 	{
-		// Send test inputs to cin
+		ActiveTestIndex = i;
+		auto &test = Tests[i];
+
 		std::stringstream cinStream;
 		for ( auto &testInput : test.TestInput )
 		{
@@ -59,20 +63,21 @@ void TestRunner::RunTests()
 
 		std::cin.rdbuf( cinStream.rdbuf() );
 
-		// Run solution
 		std::stringstream coutStream;
 		std::cout.rdbuf( coutStream.rdbuf() );
+
+		AddTimePoint( "Start" );
+
 		solution.SolutionSourceCode();
 
-		// Send solution from cout to Test
+		AddTimePoint( "End" );
+
 		std::string line;
 		while ( std::getline( coutStream, line ) )
 		{
 			test.Solution.push_back( line );
 		}
 	}
-
-	EvaluateSolution();
 
 	std::cin.rdbuf( CinBackup );
 	std::cout.rdbuf( CoutBackup );
@@ -84,14 +89,37 @@ void TestRunner::EvaluateSolution()
 	{
 		bool success = test.CheckSolution();
 
-		std::cout << test.Name << " solution " << ( success ? "Success\n" : "Wrong Answer\n" );
-		
+		std::cout << test.Name << " solution " << (success ? "Success\n" : "Wrong Answer\n");
+
 		if ( success == false )
 		{
 			std::cout << "Your output:\n";
 			test.PrintSolution();
 			std::cout << "Expected output:\n";
 			test.PrintTestSolution();
+		}
+
+		if ( test.TimePoints.size() >= 2 )
+		{
+			std::cout << "Time measurements:\n";
+			std::cout << std::setw( 42 ) << std::right << "Absolute Time"
+				<< std::setw( 19 ) << std::right << "Relateive Time\n";
+
+			auto start = test.TimePoints[0].second;
+			long long prev = 0;
+			for ( auto &timePoint : test.TimePoints )
+			{
+				long long elapsedNano = std::chrono::duration_cast<std::chrono::nanoseconds>(timePoint.second - start).count();
+				double elapsedSec = static_cast<double>(elapsedNano) * 0.000000001;
+				double elapsedSecRelative = static_cast<double>(elapsedNano - prev) * 0.000000001;
+
+				std::cout << std::fixed
+					<< std::setw( 24 ) << std::left << timePoint.first
+					<< std::setw( 16 ) << std::right << elapsedSec << " s"
+					<< std::setw( 16 ) << std::right << elapsedSecRelative << " s\n";
+
+				prev = elapsedNano;
+			}
 		}
 	}
 }
@@ -141,15 +169,15 @@ void TestRunner::ReadTestFiles()
 
 				switch ( fileStatus )
 				{
-					case TestFileStatus::TestData:
-						test.TestInput.push_back( line );
-						break;
-					case TestFileStatus::SolutionData:
-						test.TestSolution.push_back( line );
-						break;
-					case TestFileStatus::Comment:
-					default:
-						break;
+				case TestFileStatus::TestData:
+					test.TestInput.push_back( line );
+					break;
+				case TestFileStatus::SolutionData:
+					test.TestSolution.push_back( line );
+					break;
+				case TestFileStatus::Comment:
+				default:
+					break;
 				}
 			}
 			Tests.push_back( test );
@@ -168,7 +196,7 @@ bool TestRunner::Test::CheckSolution()
 	{
 		return false;
 	}
-	
+
 	for ( size_t i = 0; i < sizeSolution; i++ )
 	{
 		if ( TestSolution[i] != Solution[i] )
