@@ -9,6 +9,15 @@
 
 TestRunner::TestRunner()
 	: ActiveTestIndex( 0 )
+	, TestFolderPath( "tests" )
+	, CinBackup( nullptr )
+	, CoutBackup( nullptr )
+{
+}
+
+TestRunner::TestRunner( const std::filesystem::path &testFolderPath )
+	: ActiveTestIndex( 0 )
+	, TestFolderPath( testFolderPath )
 	, CinBackup( nullptr )
 	, CoutBackup( nullptr )
 {
@@ -21,7 +30,7 @@ TestRunner::~TestRunner()
 void TestRunner::InitWithAll()
 {
 	TestFileDirectoryEntries.clear();
-	for ( auto it : std::filesystem::directory_iterator( "tests" ) )
+	for ( auto it : std::filesystem::directory_iterator( TestFolderPath ) )
 	{
 		TestFileDirectoryEntries.push_back( it );
 	}
@@ -32,7 +41,7 @@ void TestRunner::InitWithAll()
 void TestRunner::InitWithFileNames( const std::set<std::string> &fileNames )
 {
 	TestFileDirectoryEntries.clear();
-	for ( auto it : std::filesystem::directory_iterator( "tests" ) )
+	for ( auto it : std::filesystem::directory_iterator( TestFolderPath ) )
 	{
 		if ( fileNames.find( it.path().filename().string() ) != fileNames.end() )
 		{

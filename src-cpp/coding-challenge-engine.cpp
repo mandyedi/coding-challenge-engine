@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-    TestRunner Runner;
+    TestRunner Runner( "tests" );
     //Runner.InitWithAll();
     Runner.InitWithFileNames( {
           "test0.txt"

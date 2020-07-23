@@ -10,6 +10,7 @@ class TestRunner
 {
 public:
 	TestRunner();
+	TestRunner( const std::filesystem::path &testFolderPath );
 	virtual ~TestRunner();
 
 	void InitWithAll();
@@ -24,6 +25,8 @@ private:
 	void ReadTestFiles();
 
 	unsigned int ActiveTestIndex;
+
+	std::filesystem::path TestFolderPath;
 
 	std::streambuf *CinBackup;
 	std::streambuf *CoutBackup;
