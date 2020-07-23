@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coding-challenge-engine", "coding-challenge-engine.vcxproj", "{ED1CB9C2-E731-4AD4-99FF-BA7A3C0CD876}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coding-challenge-engine-test", "coding-challenge-engine-test\coding-challenge-engine-test.vcxproj", "{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{ED1CB9C2-E731-4AD4-99FF-BA7A3C0CD876}.Release|x64.Build.0 = Release|x64
 		{ED1CB9C2-E731-4AD4-99FF-BA7A3C0CD876}.Release|x86.ActiveCfg = Release|Win32
 		{ED1CB9C2-E731-4AD4-99FF-BA7A3C0CD876}.Release|x86.Build.0 = Release|Win32
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Debug|x64.ActiveCfg = Debug|x64
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Debug|x64.Build.0 = Debug|x64
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Debug|x86.ActiveCfg = Debug|Win32
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Debug|x86.Build.0 = Debug|Win32
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Release|x64.ActiveCfg = Release|x64
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Release|x64.Build.0 = Release|x64
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Release|x86.ActiveCfg = Release|Win32
+		{4F15CA56-4684-4D3B-A5D3-37CDBAF3F568}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
