@@ -1,17 +1,17 @@
 #pragma once
 
-class TestRunner;
+class SolutionRunner;
 
 class Solution
 {
 public:
-	Solution( TestRunner *context );
+	Solution(SolutionRunner *context );
 	virtual ~Solution();
 
 	void SolutionSourceCode();
 
 private:
-	TestRunner *Context;
+	SolutionRunner *Context;
 
 };
 

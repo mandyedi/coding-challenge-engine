@@ -4,18 +4,18 @@
 #include <string>
 #include <sstream>
 #include <chrono>
-#include "TestRunner.h"
+#include "SolutionRunner.h"
 #include "Solution.h"
 
-TestRunner::TestRunner()
+SolutionRunner::SolutionRunner()
 	: ActiveTestIndex( 0 )
-	, TestFolderPath( "tests" )
+	, TestFolderPath( "test-cases" )
 	, CinBackup( nullptr )
 	, CoutBackup( nullptr )
 {
 }
 
-TestRunner::TestRunner( const std::filesystem::path &testFolderPath )
+SolutionRunner::SolutionRunner( const std::filesystem::path &testFolderPath )
 	: ActiveTestIndex( 0 )
 	, TestFolderPath( testFolderPath )
 	, CinBackup( nullptr )
@@ -23,14 +23,14 @@ TestRunner::TestRunner( const std::filesystem::path &testFolderPath )
 {
 }
 
-TestRunner::~TestRunner()
+SolutionRunner::~SolutionRunner()
 {
 }
 
-void TestRunner::InitWithAll()
+void SolutionRunner::InitWithAll()
 {
 	TestFileDirectoryEntries.clear();
-	for ( auto it : std::filesystem::directory_iterator( TestFolderPath ) )
+	for ( auto &it : std::filesystem::directory_iterator( TestFolderPath ) )
 	{
 		TestFileDirectoryEntries.push_back( it );
 	}
@@ -38,10 +38,10 @@ void TestRunner::InitWithAll()
 	ReadTestFiles();
 }
 
-void TestRunner::InitWithFileNames( const std::set<std::string> &fileNames )
+void SolutionRunner::InitWithFileNames( const std::set<std::string> &fileNames )
 {
 	TestFileDirectoryEntries.clear();
-	for ( auto it : std::filesystem::directory_iterator( TestFolderPath ) )
+	for ( auto &it : std::filesystem::directory_iterator( TestFolderPath ) )
 	{
 		if ( fileNames.find( it.path().filename().string() ) != fileNames.end() )
 		{
@@ -52,7 +52,7 @@ void TestRunner::InitWithFileNames( const std::set<std::string> &fileNames )
 	ReadTestFiles();
 }
 
-void TestRunner::RunTests()
+void SolutionRunner::RunTests()
 {
 	Solution solution( this );
 
@@ -92,7 +92,7 @@ void TestRunner::RunTests()
 	std::cout.rdbuf( CoutBackup );
 }
 
-void TestRunner::EvaluateSolution()
+void SolutionRunner::EvaluateSolution()
 {
 	for ( auto &test : Tests )
 	{
@@ -133,7 +133,7 @@ void TestRunner::EvaluateSolution()
 	}
 }
 
-void TestRunner::ReadTestFiles()
+void SolutionRunner::ReadTestFiles()
 {
 	Tests.clear();
 
@@ -196,7 +196,7 @@ void TestRunner::ReadTestFiles()
 	}
 }
 
-bool TestRunner::Test::CheckSolution()
+bool SolutionRunner::Test::CheckSolution()
 {
 	size_t sizeTestSolution = TestSolution.size();
 	size_t sizeSolution = Solution.size();
@@ -217,7 +217,7 @@ bool TestRunner::Test::CheckSolution()
 	return true;
 }
 
-void TestRunner::Test::PrintTestSolution()
+void SolutionRunner::Test::PrintTestSolution()
 {
 	for ( auto &solution : TestSolution )
 	{
@@ -225,7 +225,7 @@ void TestRunner::Test::PrintTestSolution()
 	}
 }
 
-void TestRunner::Test::PrintSolution()
+void SolutionRunner::Test::PrintSolution()
 {
 	for ( auto &solution : Solution )
 	{

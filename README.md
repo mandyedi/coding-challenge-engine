@@ -18,12 +18,12 @@ Currently it supports only C++, but Python is coming soon. Feel free to request 
 - [ ] [#1](https://github.com/mandyedi/coding-challenge-engine/issues/1 "Solution cocde generation #1") Automate solution code generation (do not have to edit solution class by hand, a script generates the final version that can be submitted)
 
 ### Engine usage
- 1. Add test files to tests folder (e.g. src-cpp/tests).
+ 1. Add test case to test-cases folder (e.g. src-cpp/test-cases).
  2. Add your solution in to Solution::SolutionSourceCode().
  3. Build and run the project and see the output.
 
 ### Test file
-You can add multiple test files to tests folder.  
+You can add multiple test cases to test-cases folder.  
 You can run all the tests by calling **Runner::InitWithAll()**.
 ```cpp
 TestRunner Runner;
@@ -31,14 +31,14 @@ Runner.InitWithAll();
 Runner.RunTests();
 Runner.EvaluateSolution();
 ```
-Or you can run one or multiple test files by calling **Runner::InitWithFileNames( { "test0.txt" } )**.
+Or you can run one or multiple test-cases by calling **Runner::InitWithFileNames( { "test0.txt" } )**.
 ```cpp
 TestRunner Runner;
-Runner.InitWithFileNames( { "test0.txt", "test1.txt" } );
+Runner.InitWithFileNames( { "test-case-0.txt", "test-case-1.txt" } );
 Runner.RunTests();
 Runner.EvaluateSolution();
 ```
-The test runner only reads two sections:
+The solution runner only reads two sections:
  - Between TEST_START and TEST_END.
  - Between SOLUTION_START and SOLUTION_END.
 
@@ -81,7 +81,7 @@ In Solution.cpp you can add a new time point as below:
 // Input parameter is the time point's name
 Context->AddTimePoint( "User Defined" );
 ```
-After every test evaluation there is a time table with the time point names and the absolute and relative time points.
+After every test case evaluation there is a time table with the time point names and the absolute and relative time points.
 ```
                          Absolute Time    Relative Time
 Start                          0.000 s          0.000 s

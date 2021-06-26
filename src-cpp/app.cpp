@@ -2,19 +2,19 @@
 //
 
 #include <iostream>
-#include "TestRunner.h"
+#include "SolutionRunner.h"
 
 int main(int argc, char **argv)
 {
-    TestRunner Runner( "tests" );
+    SolutionRunner Runner( "test-cases" );
     //Runner.InitWithAll();
     Runner.InitWithFileNames( {
-          "test0.txt"
-        , "test1.txt"
-        //, "test2.txt"
-        //, "test3.txt"
-        //, "test4.txt"
-        //, "test5.txt"
+          "test-case-0.txt"
+        , "test-case-1.txt"
+        //, "test-case-2.txt"
+        //, "test-case-3.txt"
+        //, "test-case-4.txt"
+        //, "test-case-5.txt"
     } );
     Runner.RunTests();
     Runner.EvaluateSolution();

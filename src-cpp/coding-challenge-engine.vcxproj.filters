@@ -15,30 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="coding-challenge-engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestRunner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Solution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="app.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SolutionRunner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestRunner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Solution.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SolutionRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="tests\test0.txt" />
-    <Text Include="tests\test1.txt" />
-    <Text Include="tests\test2.txt" />
-    <Text Include="tests\test3.txt" />
-    <Text Include="tests\test4.txt" />
-    <Text Include="tests\test5.txt" />
+    <Text Include="test-cases\test-case-0.txt" />
+    <Text Include="test-cases\test-case-1.txt" />
+    <Text Include="test-cases\test-case-2.txt" />
+    <Text Include="test-cases\test-case-3.txt" />
+    <Text Include="test-cases\test-case-4.txt" />
+    <Text Include="test-cases\test-case-5.txt" />
   </ItemGroup>
 </Project>

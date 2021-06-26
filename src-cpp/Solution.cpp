@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Solution.h"
-#include "TestRunner.h"
+#include "SolutionRunner.h"
 
-Solution::Solution( TestRunner *context )
+Solution::Solution(SolutionRunner *context )
 	: Context(context)
 {}
 

@@ -6,12 +6,12 @@
 #include <chrono>
 #include <utility>
 
-class TestRunner
+class SolutionRunner
 {
 public:
-	TestRunner();
-	TestRunner( const std::filesystem::path &testFolderPath );
-	virtual ~TestRunner();
+	SolutionRunner();
+	SolutionRunner( const std::filesystem::path &testFolderPath );
+	virtual ~SolutionRunner();
 
 	void InitWithAll();
 	void InitWithFileNames( const std::set<std::string> &fileNames );
@@ -51,7 +51,7 @@ private:
 	std::vector<Test> Tests;
 };
 
-inline void TestRunner::AddTimePoint( const std::string &name )
+inline void SolutionRunner::AddTimePoint( const std::string &name )
 {
 	Tests[ActiveTestIndex].TimePoints.push_back( { name, std::chrono::steady_clock::now() } );
 }
