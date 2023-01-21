@@ -24,12 +24,18 @@
     <ClCompile Include="SolutionRunner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialSolution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Solution.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SolutionRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialSolution.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

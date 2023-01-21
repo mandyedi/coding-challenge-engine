@@ -6,6 +6,8 @@
 #include <chrono>
 #include <utility>
 
+class Solution;
+
 class SolutionRunner
 {
 public:
@@ -13,8 +15,8 @@ public:
 	SolutionRunner( const std::filesystem::path &testFolderPath );
 	virtual ~SolutionRunner();
 
-	void InitWithAll();
-	void InitWithFileNames( const std::set<std::string> &fileNames );
+	void InitWithAll( Solution *solution );
+	void InitWithFileNames( Solution *solution, const std::set<std::string> &fileNames );
 
 	void RunTests();
 	void EvaluateSolution();
@@ -23,6 +25,8 @@ public:
 
 private:
 	void ReadTestFiles();
+
+	Solution *SolutionInstance;
 
 	unsigned int ActiveTestIndex;
 

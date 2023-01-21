@@ -8,9 +8,9 @@ public:
 	Solution(SolutionRunner *context );
 	virtual ~Solution();
 
-	void SolutionSourceCode();
+	virtual void SolutionSourceCode() = 0;
 
-private:
+protected:
 	SolutionRunner *Context;
 
 };

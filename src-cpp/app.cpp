@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include "SolutionRunner.h"
+#include "TutorialSolution.h"
 
 int main(int argc, char **argv)
 {
     SolutionRunner Runner( "test-cases" );
+
+    TutorialSolution tutorialSolution( &Runner );
+
     //Runner.InitWithAll();
-    Runner.InitWithFileNames( {
+    Runner.InitWithFileNames( &tutorialSolution, {
           "test-case-0.txt"
         , "test-case-1.txt"
         //, "test-case-2.txt"

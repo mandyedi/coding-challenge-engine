@@ -144,10 +144,12 @@
     <ClCompile Include="app.cpp" />
     <ClCompile Include="Solution.cpp" />
     <ClCompile Include="SolutionRunner.cpp" />
+    <ClCompile Include="TutorialSolution.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Solution.h" />
     <ClInclude Include="SolutionRunner.h" />
+    <ClInclude Include="TutorialSolution.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test-cases\test-case-0.txt" />
