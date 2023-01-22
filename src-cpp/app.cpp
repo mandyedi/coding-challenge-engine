@@ -9,10 +9,10 @@ int main(int argc, char **argv)
 {
     SolutionRunner Runner( "test-cases" );
 
-    TutorialSolution tutorialSolution( &Runner );
+    TutorialSolution tutorialSolution;
 
     //Runner.InitWithAll();
-    Runner.InitWithFileNames( &tutorialSolution, {
+    Runner.InitWithFileNames( {
           "test-case-0.txt"
         , "test-case-1.txt"
         //, "test-case-2.txt"
@@ -20,7 +20,7 @@ int main(int argc, char **argv)
         //, "test-case-4.txt"
         //, "test-case-5.txt"
     } );
-    Runner.RunTests();
+    Runner.RunTests( &tutorialSolution );
     Runner.EvaluateSolution();
 
     return 0;

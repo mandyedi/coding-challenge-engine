@@ -15,18 +15,16 @@ public:
 	SolutionRunner( const std::filesystem::path &testFolderPath );
 	virtual ~SolutionRunner();
 
-	void InitWithAll( Solution *solution );
-	void InitWithFileNames( Solution *solution, const std::set<std::string> &fileNames );
+	void InitWithAll();
+	void InitWithFileNames( const std::set<std::string> &fileNames );
 
-	void RunTests();
+	void RunTests( Solution *solution );
 	void EvaluateSolution();
 
 	void AddTimePoint( const std::string &name );
 
 private:
 	void ReadTestFiles();
-
-	Solution *SolutionInstance;
 
 	unsigned int ActiveTestIndex;
 

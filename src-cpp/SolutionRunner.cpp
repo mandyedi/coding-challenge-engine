@@ -9,8 +9,7 @@
 
 // TODO: this should be not allowed, class can't be instanced with an undetermined state
 SolutionRunner::SolutionRunner()
-	: SolutionInstance( nullptr )
-	, ActiveTestIndex( 0 )
+	: ActiveTestIndex( 0 )
 	, TestFolderPath( "test-cases" )
 	, CinBackup( nullptr )
 	, CoutBackup( nullptr )
@@ -29,10 +28,8 @@ SolutionRunner::~SolutionRunner()
 {
 }
 
-void SolutionRunner::InitWithAll( Solution *solution )
+void SolutionRunner::InitWithAll()
 {
-	SolutionInstance = solution;
-
 	TestFileDirectoryEntries.clear();
 	for ( auto &it : std::filesystem::directory_iterator( TestFolderPath ) )
 	{
@@ -42,10 +39,8 @@ void SolutionRunner::InitWithAll( Solution *solution )
 	ReadTestFiles();
 }
 
-void SolutionRunner::InitWithFileNames( Solution *solution, const std::set<std::string> &fileNames )
+void SolutionRunner::InitWithFileNames( const std::set<std::string> &fileNames )
 {
-	SolutionInstance = solution;
-
 	TestFileDirectoryEntries.clear();
 	for ( auto &it : std::filesystem::directory_iterator( TestFolderPath ) )
 	{
@@ -58,7 +53,7 @@ void SolutionRunner::InitWithFileNames( Solution *solution, const std::set<std::
 	ReadTestFiles();
 }
 
-void SolutionRunner::RunTests()
+void SolutionRunner::RunTests( Solution *solution )
 {
 	CinBackup = std::cin.rdbuf();
 	CoutBackup = std::cout.rdbuf();
@@ -81,7 +76,7 @@ void SolutionRunner::RunTests()
 
 		AddTimePoint( "Start" );
 
-		SolutionInstance->SolutionSourceCode();
+		solution->SolutionSourceCode( this );
 
 		AddTimePoint( "End" );
 

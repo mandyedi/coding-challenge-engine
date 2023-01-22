@@ -1,12 +1,13 @@
 #pragma once
 #include "Solution.h"
 
+class SolutionRunner;
+
 class TutorialSolution : public Solution
 {
 public:
-	TutorialSolution(SolutionRunner *context);
 	~TutorialSolution();
 
-	void SolutionSourceCode() override;
+	void SolutionSourceCode( SolutionRunner *runner ) override;
 };
 
